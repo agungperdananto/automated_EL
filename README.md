@@ -7,13 +7,15 @@
 ### Install requirements
     pip install -r requirements.txt
 ### Setup chromedriver
-Windows
+### Windows
     Create directory C:\bin
     Download chromedriver for Windows (https://sites.google.com/a/chromium.org/chromedriver/home) and save to C:\bin
-    Add directory to your PATH:
-Depending on your Windows version:
-    If you're using Windows 8 or 10, press the Windows key, then search for and select System (Control Panel)
-    If you're using Windows 7, right click the Computer icon on the desktop and click Properties
+    Add directory to your PATH.
+    
+    Depending on your Windows version:
+        If you're using Windows 8 or 10, press the Windows key, then search for and select System (Control Panel)
+        If you're using Windows 7, right click the Computer icon on the desktop and click Properties
+    
     Click Advanced system settings
     Click Environment Variables
     Under System Variables, find the PATH variable, select it, and click Edit. If there is no PATH variable, click New
