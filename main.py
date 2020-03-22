@@ -68,5 +68,5 @@ def create_forum_coments(course, week, message):
 
 login(USERNAME, PASSWORD)
 message = 'Setiap mahasiswa cukup berdiskusi di satu forum saja (bebas).'
+create_forum_per_week(COURSE_IDS, 3)
 coment_in_forum_per_week(COURSE_IDS, 3, message)
-# all_course_task(COURSE_IDS, 3)

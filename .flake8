@@ -1,0 +1,6 @@
+[flake8]
+exclude = .git, migrations, venv, __pyscache__, .vscode, local_settings.py
+max-line-length = 119
+max-complexity = 10
+import-order-style = google
+application-import-names = campaign, catalog, customer, erp, groupbuy, promotion, shipping, utils
