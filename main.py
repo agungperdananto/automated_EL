@@ -18,9 +18,9 @@ def login(username, password):
     driver.find_element_by_css_selector('.btn.btn-primary').click()
 
     if driver.find_elements_by_css_selector('.userpicture.defaultuserpic'):
-        print('LOGIN SUCCESS')
+        return
     else:
-        print('FAILED LOGIN')
+        raise ('LOGIN FAILED')
 
 
 def filling_forum(FORUM_QUESTIONS, course, week):
@@ -42,4 +42,4 @@ def all_course_task(courses, week):
 
 
 login(USERNAME, PASSWORD)
-all_course_task(COURSE_IDS, 3)
+# all_course_task(COURSE_IDS, 3)
