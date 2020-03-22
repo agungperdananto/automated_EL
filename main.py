@@ -23,10 +23,15 @@ def login(username, password):
         raise ('LOGIN FAILED')
 
 
-def filling_forum(FORUM_QUESTIONS, course, week):
-    driver.get(COURSE_URL.format(course, 3))
-    forum_element = driver.find_elements_by_css_selector('.activity.forum.modtype_forum')[3]
+def define_forum(course, week):
+    driver.get(COURSE_URL.format(course, week))
+    forum_element = driver.find_elements_by_css_selector('.activity.forum.modtype_forum')[week]
     forum_id = forum_element.get_attribute('id')[7:]
+    return forum_id
+
+
+def create_forum(course, week):
+    forum_id = define_forum(course, week)
     for forum_count in range(8):
         driver.get(FORUM_URL.format(forum_id))
         buttons = driver.find_elements_by_xpath("//*[contains(text(), 'Tambah topik diskusi baru')]")
@@ -36,10 +41,32 @@ def filling_forum(FORUM_QUESTIONS, course, week):
         driver.find_element_by_id('id_submitbutton').click()
 
 
-def all_course_task(courses, week):
+def create_forum_per_week(courses, week):
     for course in courses:
-        filling_forum(FORUM_QUESTIONS, course, week)
+        create_forum(course, week)
+
+
+def coment_in_forum_per_week(courses, week, comment):
+    for course in courses:
+        create_forum_coments(course, week, message)
+
+
+def create_forum_coments(course, week, message):
+    forum_id = define_forum(course, week)
+    driver.get(FORUM_URL.format(forum_id))
+    element_text = "//*[contains(text(), 'forum{}')]".format(week)
+    forum_url_elements = driver.find_elements_by_xpath(element_text)
+    forum_urls = [forum_url_element.get_attribute('href') for forum_url_element in forum_url_elements]
+    for forum_url in forum_urls:
+        driver.get(forum_url)
+        reply_urls = driver.find_elements_by_xpath("//*[contains(text(), 'Tanggapi')]")
+        reply_url = reply_urls[0].get_attribute('href')
+        driver.get(reply_url)
+        driver.find_element_by_id('id_messageeditable').send_keys(message)
+        driver.find_element_by_id('id_submitbutton').click()
 
 
 login(USERNAME, PASSWORD)
+message = 'Setiap mahasiswa cukup berdiskusi di satu forum saja (bebas).'
+coment_in_forum_per_week(COURSE_IDS, 3, message)
 # all_course_task(COURSE_IDS, 3)
