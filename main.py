@@ -1,5 +1,5 @@
 from selenium import webdriver
-from settings import (
+from local_settings import (
     COURSE_IDS,
     COURSE_URL,
     FORUM_QUESTIONS,
