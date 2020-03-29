@@ -26,11 +26,11 @@ def define_forum(course, week):
 
 def create_forum(course, week):
     forum_id = define_forum(course, week)
-    for forum_count in range(8):
+    for forum_count in range(5):
         driver.get(settings.FORUM_URL.format(forum_id))
         buttons = driver.find_elements_by_xpath("//*[contains(text(), 'Tambah topik diskusi baru')]")
         buttons[0].click()
-        driver.find_element_by_id('id_subject').send_keys('forum', '3-'+str(forum_count))
+        driver.find_element_by_id('id_subject').send_keys('forum', str(week)+'-'+str(forum_count))
         driver.find_element_by_id('id_messageeditable').send_keys(settings.FORUM_QUESTIONS[forum_count])
         driver.find_element_by_id('id_submitbutton').click()
 
